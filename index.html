@@ -7,6 +7,7 @@
   .zip_bounds {
     fill: none;
     stroke: #888;
+    stroke-width: 0.5;
     stroke-linejoin: round;
   }
   svg {
@@ -15,10 +16,17 @@
     border-color: #ccc;
     background: #f0f0f0;
   }
+  .overlay {
+    fill: none;
+    pointer-events: all;
+  }
   </style>
 </head>
 <body>
   <div id="map"></div>
+  <div id="info">
+    Scroll to zoom, drag to reposition.
+  </div>
   <script src="d3.v3.min.js"></script>
   <script>
 (function() {
@@ -27,13 +35,22 @@
   var width = 900;
   var projection = d3.geo.mercator();
   var bay_area = void 0;
+  var map = void 0;
   
-  function l(msg) { console.log(msg); }
-  function geoID(d) { return "c" + d.properties.ZIP; }
+  var l = function(msg) { console.log(msg); }
+  var geoID = function(d) { return "c" + d.properties.ZIP; }
+  var zoomed = function () {
+    // d3.event.translate: This defines the position of the map in relation to the mouse in terms of an SVG translate
+    // d3.event.scale: This defines how much the user has zoomed in terms of an SVG scale
+    map.attr("transform", "translate("+ d3.event.translate + ") scale(" + d3.event.scale + ")");
+  };
+  var zoom = d3.behavior.zoom()
+     .scaleExtent([1, 8])
+     .on("zoom", zoomed)
+     .size([width, height]);
 
   // d3 helper that converts geo coordinates to paths based on a projection
   var path = d3.geo.path().projection(projection);
-
   var svg = d3.select("#map")
       .append("svg")
       .attr("width", width)
@@ -61,7 +78,7 @@
     var trans_y = (height - s * (top + bottom)) / 2;
     projection.translate([trans_x, trans_y]);
 
-    var map = svg.append('g').attr('class', 'zip_bounds');
+    map = svg.append('g').attr('class', 'zip_bounds');
     bay_area = map.selectAll('path').data(zip_areas.features);
 
     //Enter
@@ -84,6 +101,12 @@
 
     //Exit
     bay_area.exit().remove();
+    
+    svg.append("rect")
+       .attr("class", "overlay")
+       .attr("width", width)
+       .attr("height", height)
+       .call(zoom);
   });
 
 })();
