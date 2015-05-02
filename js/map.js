@@ -1,46 +1,3 @@
-<!doctype html>
-<html lang="en" ng-app>
-<head>
-  <meta charset="utf-8">
-  <title>Teleport - Bay Area</title>
-  <script src="angular-1.3.15.min.js"></script>
-  <style>
-  .zip_bounds {
-    fill: none;
-    stroke: #888;
-    stroke-width: 0.5;
-    stroke-linejoin: round;
-  }
-  svg {
-    border-style: solid;
-    border-width: 1px;
-    border-color: #ccc;
-    background: #f0f0f0;
-  }
-  .overlay {
-    fill: none;
-    pointer-events: all;
-  }
-  #map {
-    float: left;
-    
-  }
-  #info {
-    float: left;
-    padding: 0 10px;
-  }
-  </style>
-</head>
-<body>
-  <div id="map"></div>
-  <div id="info">
-    Scroll to zoom, drag to reposition.<br><br>
-    <div class="">
-      buttons be here
-    </div>
-  </div>
-  <script src="d3.v3.min.js"></script>
-  <script>
 (function() {
 
   var height = 800;
@@ -122,6 +79,3 @@
   });
 
 })();
-  </script>
-
-</body>
