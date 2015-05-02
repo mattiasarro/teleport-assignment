@@ -23,7 +23,7 @@ We assume an OS X system.
 ### Node.js, npm
 	brew install node # should be at least 0.12
 	brew install npm
-	npm install -g http-server ya-csv
+	npm install -g ya-csv
 
 ### R
 	sudo brew cask install xquartz
@@ -162,7 +162,7 @@ Let's see how mi filled out the missing values:
 
 	> image(imputations)
 
-![before-after-availabilities-as-counts-50+5.png](data/before-after-defaults-50+5.png)
+![public/before-after-availabilities-as-counts-50+5.png](data/before-after-defaults-50+5.png)
 
 Finally, save the results as a CSV file.
 
@@ -177,7 +177,7 @@ My first preference for merging these data would have been Ruby, but using JS re
 
 After running predict\_missing\_rent\_data.R we get the following image(imputations)
 
-![before-after-with-census-data-50+5.png](data/before-after-with-census-data-50+5.png)
+![public/before-after-with-census-data-50+5.png](data/before-after-with-census-data-50+5.png)
 
 # Data Visualization
 ## Merge prediction data with GeoJSON data [3]
@@ -185,20 +185,33 @@ After running predict\_missing\_rent\_data.R we get the following image(imputati
     node merge_full_imputed_to_bayarea_zips.js
 
 ## View the visualization [4]
-	http-server
-	open http://localhost:8080/
+	npm install
+	node index.js
+	open http://localhost:5000/
+
+Demo at https://teleport-assignment-arro.herokuapp.com/
 
 # Comments
 
-# Further work
+Although I managed to implement the bare minimum of functionality I planned for, the majority of time was spent on researching how to predict the missing values. I have previously partially worked through Stanford's Machine Learning at Coursera, MIT's Analytics Edge at edx, and some Data Science track courses on Coursera; for this assignment, Stanford's Probabilistic Graphical Models at Coursera gave me some insight into predicting missing values with EM. The course didn't provide concrete examples, so I relied entirely on the documentation of the 'mi' R package.
+
+The second step, combining the datasets with JS scripts, could have been done faster had I done it with my preferred language Ruby. But the JS implementation is acceptable as well.
+
+For the UI elements, I used Bootstrap, though I could have saved time by opting for ordinary HTML select and radio input tags.
+
+Although I managed to integrate Angular and D3, I am not happy with the results. D3 logic is handled in the separate map.js file, which exports the 'bay_area' variable through the global 'window' variable, which is definitely a hack. Since I haven't used Angular before, I would need more time to come up with a solution I am happy with. I have combined D3 with Ember and a Rais backend (https://github.com/mattiasarro/statt-display), and I remember the difficulty in finding a good solution for integrating such tehcnologies.
+
+I wish I had more time on the actual D3 visualization. Some of the features I planned include
+
+* a choropleth that combines high availability and low price
+* outlining imputed values
+* displaying census data (there would be a click listener that would display it in tabular form)
+* charts for census data (e.g. pie chart of ethnicity) along the tabular data
+* choropleths for census data
+* filters. i.e. user could specify ranges (with sliders?) of different attributes, e.g. max price, min bedrooms, min/max avg population. The areas that match this filter would be colored with an "on" color, or it could be combined with the choropleth.
+* could d3-generated SVGs be lain ontop of Google Maps?
+
+I would also like to look at the data more closely (so far i was dealing with implementing a solution rather than analyzing the data)
+
 * Could tere be a way to specify correlations between variable pairs e.g. X1br_rent and X1br_availability?
-* d3-style stuff could be lain ontop of gmaps
-* viz elements that didn't make it
-	* availability/price
-	* outlining imputed values
-	* displaying census data
-	* charts for census data (e.g. pie chart of ethnicity)
-	* choropleths for census data
-	* filters
-* properly looking at the data
 * linear regression to see if there are interesting correlations (e.g. price / ethnicity)
