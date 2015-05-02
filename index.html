@@ -14,20 +14,20 @@
   <div id="info">
     Scroll to zoom, drag to reposition.<br><br>
     <div class="" ng-controller="MapControls">
-      
+      Showing choropleth for
       <div class="btn-group" dropdown>
-        <button type="button" class="btn btn-primary">Action</button>
+        <button type="button" class="btn btn-primary">{{flatOption.name || 'null'}}</button>
         <button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle>
           <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-          <li ng-repeat="flatOption in flatOptions" ng-click="setFlatOption(flatOption.id)"><a href="#">{{flatOption.name}}</a></li>
+          <li ng-repeat="flatOption in flatOptions" ng-click="setFlatOption(flatOption)"><a href="#">{{flatOption.name}}</a></li>
         </ul>
       </div>
       
       <div class="btn-group">        
-        <label class="btn btn-primary" ng-model="availabilityRent" btn-radio="'availability'">availability</label>
-        <label class="btn btn-primary" ng-model="availabilityRent" btn-radio="'rent'">rent</label>
+        <label class="btn btn-primary" ng-model="availabilityRent" ng-click="setAvailabilityRent('availability')" btn-radio="'availability'">availability</label>
+        <label class="btn btn-primary" ng-model="availabilityRent" ng-click="setAvailabilityRent('rent')" btn-radio="'rent'">rent</label>
       </div>
       
     </div>
