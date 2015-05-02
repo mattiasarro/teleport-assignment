@@ -174,7 +174,10 @@ Finally, save the results as a CSV file.
 My first preference for merging these data would have been Ruby, but using JS reduces tyhe number of requirements needed to install (and languages to know/learn) by other team members who need to work with the data.
 
   node merge_data.js
-run the R code again
+
+After running predict\_missing\_rent\_data.R we get the following image(imputations)
+
+![before-after-with-census-data-50+5.png](data/before-after-with-census-data-50+5.png)
 
 # Data Visualization
 ## Merge prediction data with GeoJSON data [3]

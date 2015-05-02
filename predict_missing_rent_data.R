@@ -3,7 +3,7 @@ require('mi')
 setwd("~/Data Science/teleport/teleport-assignment/data/")
 options(mc.cores = 4)
 
-mdf <- missing_data.frame(read.csv('rent_data.csv'))
+mdf <- missing_data.frame(read.csv('rent_data_with_census.csv'))
 summary(mdf)
 show(mdf)
 hist(mdf)
