@@ -21,19 +21,30 @@
     fill: none;
     pointer-events: all;
   }
+  #map {
+    float: left;
+    
+  }
+  #info {
+    float: left;
+    padding: 0 10px;
+  }
   </style>
 </head>
 <body>
   <div id="map"></div>
   <div id="info">
-    Scroll to zoom, drag to reposition.
+    Scroll to zoom, drag to reposition.<br><br>
+    <div class="">
+      buttons be here
+    </div>
   </div>
   <script src="d3.v3.min.js"></script>
   <script>
 (function() {
 
-  var height = 600;
-  var width = 900;
+  var height = 800;
+  var width = 800;
   var projection = d3.geo.mercator();
   var bay_area = void 0;
   var map = void 0;
@@ -58,7 +69,7 @@
       .attr("height", height);
 
   d3.json('data/bayarea_zips_augmented.json', function(zip_areas) {
-    l('zip_areas', zip_areas);
+    l(zip_areas);
         
     // Setup the scale and translate
     projection.scale(1).translate([0, 0]);
