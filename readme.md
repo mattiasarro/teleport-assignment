@@ -188,18 +188,17 @@ After running predict\_missing\_rent\_data.R we get the following image(imputati
 	http-server
 	open http://localhost:8080/
 
-# Conclusions
+# Comments
 
 # Further work
 * Could tere be a way to specify correlations between variable pairs e.g. X1br_rent and X1br_availability?
 * d3-style stuff could be lain ontop of gmaps
 * viz elements that didn't make it
-* what to do with
-		> mdf <- missing_data.frame(read.csv('rent_data.csv'))
-		NOTE: In the following pairs of variables, the missingness pattern of the second is a subset of the first.
-		 Please verify whether they are in fact logically distinct variables.
-		     [,1]          [,2]      
-		[1,] "X1br_rent"   "all_rent"
-		[2,] "X2br_rent"   "all_rent"
-		[3,] "X3br_rent"   "all_rent"
-		[4,] "studio_rent" "all_rent"
+	* availability/price
+	* outlining imputed values
+	* displaying census data
+	* charts for census data (e.g. pie chart of ethnicity)
+	* choropleths for census data
+	* filters
+* properly looking at the data
+* linear regression to see if there are interesting correlations (e.g. price / ethnicity)
