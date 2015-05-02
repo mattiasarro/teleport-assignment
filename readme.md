@@ -162,7 +162,7 @@ Let's see how mi filled out the missing values:
 
 	> image(imputations)
 
-![public/before-after-availabilities-as-counts-50+5.png](data/before-after-defaults-50+5.png)
+![public/before-after-availabilities-as-counts-50+5.png](public/data/before-after-defaults-50+5.png)
 
 Finally, save the results as a CSV file.
 
@@ -177,7 +177,7 @@ My first preference for merging these data would have been Ruby, but using JS re
 
 After running predict\_missing\_rent\_data.R we get the following image(imputations)
 
-![public/before-after-with-census-data-50+5.png](data/before-after-with-census-data-50+5.png)
+![public/before-after-with-census-data-50+5.png](public/data/before-after-with-census-data-50+5.png)
 
 # Data Visualization
 ## Merge prediction data with GeoJSON data [3]
