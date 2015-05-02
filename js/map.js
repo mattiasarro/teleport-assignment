@@ -57,12 +57,7 @@
        .append('path')
        .attr('d', path)
        .attr('id', geoID)
-       .on('click', function(d){
-         d3.select('#' + geoID(d)).attr('stroke', 'blue');
-       })
     
-
-
     //Exit
     window.bay_area.exit().remove();
     

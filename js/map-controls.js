@@ -2,7 +2,7 @@ angular.module('teleport', ['ui.bootstrap']);
 
 angular.module('teleport').controller('MapControls', function ($scope) {
   
-  $scope.flatOption = "choose flat type";
+  $scope.flatOption = {id: "", name: "choose flat type"};
   $scope.flatOptions = [
     {id: "studio", name: "studio flats"},
     {id: "X1br", name: "1 bedroom flats"},
@@ -10,6 +10,8 @@ angular.module('teleport').controller('MapControls', function ($scope) {
     {id: "X3br", name: "3 bedroom flats"},
     {id: "all", name: "all flats"}
   ];
+  
+  $scope.availabilityRent = 'rent';
     
   function l(o) {console.log(o); }
   
@@ -61,7 +63,5 @@ angular.module('teleport').controller('MapControls', function ($scope) {
     }
     return(d3.max(arr));
   }
-  
-  $scope.availabilityRent = 'rent';
-  
+    
 });
