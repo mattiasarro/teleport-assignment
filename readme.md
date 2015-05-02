@@ -171,6 +171,8 @@ Finally, save the results as a CSV file.
 
 ## Augmenting rent_data.csv with census.csv [2]
 
+My first preference for merging these data would have been Ruby, but using JS reduces tyhe number of requirements needed to install (and languages to know/learn) by other team members who need to work with the data.
+
   node merge_data.js
 run the R code again
 
@@ -179,6 +181,8 @@ run the R code again
 ## View the visualization [4]
 	http-server
 	open http://localhost:8080/
+
+# Conclusions
 
 # Further work
 * Could tere be a way to specify correlations between variable pairs e.g. X1br_rent and X1br_availability?
