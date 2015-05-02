@@ -22,5 +22,5 @@ Rhats(imputations)
 plot(imputations)
 image(imputations)
 
-dfs <- complete(imputations, m = 2)
+dfs <- complete(imputations, m = 1)
 write.csv(dfs, "rent_data_imputed.csv")
