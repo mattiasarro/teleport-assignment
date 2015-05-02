@@ -13,6 +13,7 @@
     border-style: solid;
     border-width: 1px;
     border-color: #ccc;
+    background: #f0f0f0;
   }
   </style>
 </head>
@@ -26,6 +27,9 @@
   var width = 900;
   var projection = d3.geo.mercator();
   var bay_area = void 0;
+  
+  function l(msg) { console.log(msg); }
+  function geoID(d) { return "c" + d.properties.ZIP; }
 
   // d3 helper that converts geo coordinates to paths based on a projection
   var path = d3.geo.path().projection(projection);
@@ -35,8 +39,8 @@
       .attr("width", width)
       .attr("height", height);
 
-  d3.json('data/bayarea_zips.json', function(zip_areas) {
-    console.log('zip_areas', zip_areas);
+  d3.json('data/bayarea_zips_augmented.json', function(zip_areas) {
+    l('zip_areas', zip_areas);
         
     // Setup the scale and translate
     projection.scale(1).translate([0, 0]);
@@ -63,10 +67,20 @@
     //Enter
     bay_area.enter()
        .append('path')
-       .attr('d', path);
-
-    //Update
-    bay_area.attr('fill', '#eee');
+       .attr('d', path)
+       .attr('id', geoID)
+       .on('click', function(d){
+         d3.select('#' + geoID(d)).attr('stroke', 'blue');
+       })
+    
+     //Update
+    var color = d3.scale.linear().domain([0,281]).range(['white','green']);
+    bay_area.attr('fill', function(d,i) {
+      if (d.properties.X1br_availability != undefined) {
+        
+        return(color(d.properties.X1br_availability.value));
+      }
+    });
 
     //Exit
     bay_area.exit().remove();
